@@ -8,15 +8,15 @@ version: 2.1
 jobs:
   run-frontend:
     docker:
-        image: foxtastic/parsec_client
+        image: foxtastic/parsec_client:latest
         auth:
           username: foxtastic
           password: $Werewolf8787 
-        command: run
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.14
+      - run
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

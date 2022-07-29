@@ -23,5 +23,4 @@ jobs:
 workflows:
   run-backend-workflow:
     jobs:
-      - run-backend
       - run-frontend

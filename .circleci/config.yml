@@ -5,22 +5,34 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  run-backend:
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+      - image: foxtastic/parsec_backend
+        auth:
+          username: foxtastic
+          password: $Werewolf8787 
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.14
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          docker run
+ run-frontend:
+    docker:
+      - image: foxtastic/parsec_client
+        auth:
+          username: foxtastic
+          password: $Werewolf8787 
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+      - run:
+          docker run
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  run-backend-workflow:
     jobs:
-      - say-hello
+      - run-backend

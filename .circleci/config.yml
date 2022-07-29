@@ -8,7 +8,7 @@ version: 2.1
 jobs:
   run_backend:
     docker:
-      image: foxtastic/parsec_client:latest
+      - image: foxtastic/parsec_client:latest
         auth:
           username: foxtastic
           password: $Werewolf8787
